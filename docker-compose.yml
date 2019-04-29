@@ -1,0 +1,23 @@
+version: "3"
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  postgres96-vol: {}
+
+services:
+  postgres96:
+    build: ./postgres9.6
+    volumes:
+      - postgres96-vol:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=proxima
+      - POSTGRES_USER=proxima
+      - POSTGRES_PASSWORD=proxima
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8
+    networks:
+      - backend
